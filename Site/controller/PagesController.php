@@ -1,11 +1,8 @@
 <?php
 class PagesController extends Controller{
 
-	function view($nom) {
-		$this->set(array(
-			'phrase' => 'Salut', 
-			'nom'    => 'Machin'
-		));
-		$this->render('index');
-	}
+    function view(){
+        $this->loadModel('Exercices');
+        $this->loadModel('Exercices');
+    }
 }
