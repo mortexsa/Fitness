@@ -18,7 +18,7 @@
 			</div>
 			<div id="formulaire_connexion">
 				<form action="interraction/connexion.php" method="post">
-					<p><input type="text" name="email" placeholder="Adresse e-mail" id="email"></p>
+					<p><input type="email" name="email" placeholder="Adresse e-mail" id="email"></p>
 					<p><input type="password" name="password" placeholder="Mot de passe" id="password"></p>
 					<p><input type="submit" name="submit" value="Connexion" id="submit"></p>
 				</form>
