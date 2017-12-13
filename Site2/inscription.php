@@ -19,10 +19,10 @@
 		</header>
 		<section>
 			<div id="formulaire_connexion">
-				<form action="connexion.php" method="post">
+				<form action="interraction/inscription_test.php" method="post">
 					<p><input type="text" name="nom" placeholder="Nom" id="colone_remplire"></p>
 					<p><input type="text" name="prenom" placeholder="Prénom" id="colone_remplire"></p>
-					<p><input type="text" name="email" placeholder="Adresse e-mail" id="colone_remplire"></p>
+					<p><input type="text" name="inscri_email" placeholder="Adresse e-mail" id="colone_remplire"></p>
 					<p><input type="text" name="date_naissance" placeholder="Date de naissance" id="colone_remplire"></p>
 					<p><input type="tel" name="tel" placeholder="Téléphone" id="colone_remplire"></p>
 					<p>
@@ -31,12 +31,14 @@
 							<option id="sexe">Femme</option>
 						</select>
 					</p>
-					<p><input type="password" name="password" placeholder="Tapez votre mot de passe" id="colone_remplire"></p>
-					<p><input type="password" name="sec_password" placeholder="Retapez votre mot de passe" id="colone_remplire"></p>
+					<p><input type="password" name="inscri_password" placeholder="Tapez votre mot de passe" id="colone_remplire"></p>
+					<p><input type="password" name="inscri_password2" placeholder="Retapez votre mot de passe" id="colone_remplire"></p>
 					<p><input type="submit" name="submit" value="S'inscrire" id="submit"></p>
 				</form>
 			</div>
-			<p id="pour_connexion">Vous êtes déjà inscrit? <a href="index.php">Cliquez içi pour vous connecter</a></p>
+			<div id="pour_connexion">
+				<p>Vous êtes déjà inscrit? <a href="index.php">Cliquez içi pour vous connecter</a></p>
+			</div>
 		</section>
 		<footer>
 			<p>ddd</p>

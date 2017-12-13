@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,14 @@
 				<h2>CRÉATION DE PROGRAMMES FITNESS</h2>
 				<h4>Il n'a jamais été aussi facile de crée son programme fitness!</h4>
 			</div>
+			
+			<?php 
+			if(isset($_SESSION['erreur'])) {
+				echo '<div id="affiche_erreur"><p>'.$_SESSION['erreur'].'</p></div>';
+			}
+			?>
+			
+
 			<div id="formulaire_connexion">
 				<form action="interraction/connexion.php" method="post">
 					<p><input type="email" name="email" placeholder="Adresse e-mail" id="email"></p>
@@ -23,7 +32,9 @@
 					<p><input type="submit" name="submit" value="Connexion" id="submit"></p>
 				</form>
 			</div>
-			<p id="pour_inscrire">Vous n'avez pas de compte? <a href="inscription.php">Cliquez içi pour vous inscrire</a></p>
+			<div id="pour_inscrire">
+			<p>Vous n'avez pas de compte? <a href="inscription.php">Cliquez içi pour vous inscrire</a></p>
+			</div>
 		</header>
 		<section>
 			<p>
@@ -271,3 +282,4 @@
 </body>
 
 </html>
+<?php session_destroy() ?>

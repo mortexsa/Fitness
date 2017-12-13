@@ -60,6 +60,12 @@ body{
 	background-color: white;
 	color: #424242;
 }
+#pour_connexion{
+	background-color: rgba(0,0,0,0.5);
+	margin: auto;
+	width: 430px;
+	border-radius: 10px;
+}
 #pour_connexion a {
 	color: white;
 }
