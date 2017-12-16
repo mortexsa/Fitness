@@ -2,12 +2,7 @@
 //On lance la session
 session_start();
 //connexion a la base de données
-try {
-	$bdd = new PDO('mysql:host=localhost;dbname=fitness;charset=utf8', 'root', '159753Ena,;:');
-}
-catch(Exception $e) {
-    die('Erreur : '.$e->getMessage());
-}
+include('../connexion_bdd/connexionbdd_user.php');
 //on teste si le formulaire est bien remplie
 if(isset($_POST)){
  	if(!empty($_POST['email']) && !empty($_POST['password'])){
@@ -23,19 +18,20 @@ if(isset($_POST)){
 		
 		//on verifie que la requete a bien trouver l'utilisateur unique
 		if($req->rowCount() == 1){
-			header("Location: ../utilisateur.php");
+			$userinfo = $req->fetch();
+			$_SESSION['id'] = $userinfo['id'];
+			header("Location: ../utilisateur/accueil.php");
 			exit();
 		}
 		else
 		{
 			$_SESSION['erreur'] = "Vos identifiants sont incorrects";
-			header("Location: ../index.php");
 		}
 	}
 	else{
 		$_SESSION['erreur'] = "Tous les champs sont obligatoires";
-		header("Location: ../index.php");
 	}
+	header("Location: ../index.php");
 }
 
 ?>

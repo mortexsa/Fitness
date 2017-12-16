@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,17 +23,22 @@
 			</div>
 		</header>
 		<section>
+			<?php 
+			if(isset($_SESSION['erreur_inscription'])) {
+				echo '<div id="affiche_erreur"><p>'.$_SESSION['erreur_inscription'].'</p></div>';
+			}
+			?>
 			<div id="formulaire_connexion">
 				<form action="interraction/inscription_test.php" method="post">
-					<p><input type="text" name="nom" placeholder="Nom" id="colone_remplire"></p>
-					<p><input type="text" name="prenom" placeholder="Prénom" id="colone_remplire"></p>
+					<p><input type="text" name="nom" placeholder="Nom ex: Jean-Michel" id="colone_remplire"></p>
+					<p><input type="text" name="prenom" placeholder="Prénom ex: Jean-François" id="colone_remplire"></p>
 					<p><input type="text" name="inscri_email" placeholder="Adresse e-mail" id="colone_remplire"></p>
-					<p><input type="text" name="date_naissance" placeholder="Date de naissance" id="colone_remplire"></p>
-					<p><input type="tel" name="tel" placeholder="Téléphone" id="colone_remplire"></p>
+					<p><input type="text" name="date_naissance" placeholder="Date de naissance jj/mm/aaaa" id="colone_remplire"></p>
+					<p><input type="tel" name="tel" placeholder="Téléphone ex: 0615478965" id="colone_remplire"></p>
 					<p>
 						<select name="sexe" id="submit" style="text-align-last: center;">
-							<option id="sexe">Homme</option>
-							<option id="sexe">Femme</option>
+							<option value="H" selected>Homme</option>
+							<option value="F">Femme</option>
 						</select>
 					</p>
 					<p><input type="password" name="inscri_password" placeholder="Tapez votre mot de passe" id="colone_remplire"></p>
@@ -45,5 +55,7 @@
 		</footer>
 	</div>	
 </body>
-
 </html>
+<?php
+	unset($_SESSION['erreur_inscription']);
+?>

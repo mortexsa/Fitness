@@ -282,4 +282,4 @@
 </body>
 
 </html>
-<?php session_destroy() ?>
+<?php unset($_SESSION['erreur']) ?>

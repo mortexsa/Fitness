@@ -38,7 +38,19 @@ body{
 	margin-top: -22px;
 	margin-bottom: 60px;
 }
-
+#affiche_erreur {
+	color: red;
+	background-color: rgba(0,0,0,0.4);
+	font-weight: bold;
+	border:2px solid red;
+	margin-top:-25px;
+	margin-bottom:-10px;
+	padding-bottom: 20px;
+	width: 540px;
+	height: 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
 #colone_remplire {
 	width: 520px;
 	height: 50px;
