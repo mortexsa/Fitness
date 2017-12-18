@@ -14,18 +14,13 @@ if(isset($_POST['submit'])) {
  		&& !empty($_POST['inscri_password2']))
  	{
  		//connexion a la base de données
-		try {
-			$bdd = new PDO('mysql:host=localhost;dbname=fitness;charset=utf8', 'root', '159753Ena,;:');
-		}
-		catch(Exception $e) {
-		    die('Erreur : '.$e->getMessage());
-		}
- 		
+		include("../connexion_bdd/connexionbdd_user.php");
+		
  		extract($_POST);
  		$nom = ucfirst(strtolower(htmlspecialchars(strip_tags($nom))));
 
 		
-		//on verifie que le nom
+		//on verifie le nom
  		if(preg_match("#^[\p{L}]{2,20}(\-[\p{L}]{2,20}){0,1}$#",$nom)) {
  			$prenom = ucfirst(strtolower(htmlspecialchars(strip_tags($prenom))));
  			
@@ -66,7 +61,8 @@ if(isset($_POST['submit'])) {
 	 										$req3 = $bdd->prepare("SELECT tel FROM utilisateurs WHERE tel = ?");
 											$req3->execute(array($tel));
 											$exist_tel = $req3->rowCount();
-	 										
+	 										$req2->closeCursor();
+	 										$req3->closeCursor();
 	 										if($exist_email) {
 	 											$_SESSION['erreur_inscription'] = "Cette adresse e-mail est déja utiliser";
 	 										}
@@ -77,11 +73,16 @@ if(isset($_POST['submit'])) {
 	 											$date_naissance = $tab[2]."-".$tab[1]."-".$tab[0];
 	 											$insertuser = $bdd->prepare("INSERT INTO utilisateurs(nom, prenom, email, date_naissance, tel, sexe, password) VALUES(?,?,?,?,?,?,?)");
 	 											$insertuser->execute(array($nom, $prenom, $inscri_email, $date_naissance, $tel, $sexe, $inscri_password));
-												$_SESSION['erreur_inscription'] = "Vous étes bien inscrit";
+	 											$insertuser->closeCursor();
+	 											$user = $bdd->prepare("SELECT id FROM utilisateurs WHERE email=?");
+	 											$user->execute(array($inscri_email));
+	 											$aff = $user->fetch();
+	 											$_SESSION['id'] = $aff['id'];
+												header("Location: ../utilisateurs/workouts.php");
 	 										}
 	 									}
 	 									else {
-	 										$_SESSION['erreur_inscription'] = "met le meme a din yemak";
+	 										$_SESSION['erreur_inscription'] = "Veuillez entrez des mot de passe identiques";
 	 									}
 	 								}
 	 								else {

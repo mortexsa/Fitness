@@ -1,32 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Petit menu dégulasse</title>
-	<link rel="stylesheet" type="text/css" href="../style/menu.css">
-</head>
-<body>
+<header id="container">
 	<nav class="menu">
 		<div id="logo_recherche">
 			<img src="../Logo-PSF-blanc.png">
-			<form method="get">
-				<input type="search" name="search" placeholder="Rechercher un exercice">
-				<input type="submit" name="ok" value="OK">
+			<form method="get" action="exercices.php">
+				<input type="search" name="q" placeholder="Rechercher un exercice">
+				<input type="submit" value="OK">
 			</form>
 		</div>
 		<ul>
 			<li>
-				<a href="#">Workouts</a>
+				<a href="workouts.php">Workouts</a>
 			</li>
 			<li>
-				<a href="#">Catégories</a>
+				<a href="exercices.php">Exercices</a>
 			</li>
 			<li>
-				<a href="#">Profil</a>
+				<a href="categories.php">Categories</a>
 			</li>
 			<li>
-				<a href="deconnexion.php">Déconnexion</a>
+				<a href="profil.php">Profil</a>
+			</li>
+			<li>
+				<a href="deconnexion.php">Deconnexion</a>
 			</li>
 		</ul>
 	</nav>
-</body>
-</html>
+</header>

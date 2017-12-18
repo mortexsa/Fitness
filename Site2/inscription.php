@@ -1,6 +1,6 @@
 <?php
-session_start();
-
+	session_start();
+	if(!isset($_SESSION['id'])) {
 ?>
 
 <!DOCTYPE html>
@@ -9,6 +9,7 @@ session_start();
 	<meta charset="utf-8">
 	<title>Fitness - Programme</title>
 	<link rel="stylesheet" type="text/css" href="style/style_inscription.css">
+	<link rel="stylesheet" type="text/css" href="style/footer.css">
 </head>
 
 <body>
@@ -50,12 +51,15 @@ session_start();
 				<p>Vous êtes déjà inscrit? <a href="index.php">Cliquez içi pour vous connecter</a></p>
 			</div>
 		</section>
-		<footer>
-			<p>ddd</p>
-		</footer>
+		</br></br></br></br></br></br></br></br></br>
+		<?php include("utilisateur/footer.php") ?>
 	</div>	
 </body>
 </html>
 <?php
-	unset($_SESSION['erreur_inscription']);
+	unset($_SESSION['erreur_inscription']);}
+	else {
+		header("Location: utilisateur/workouts.php");
+	}
+
 ?>

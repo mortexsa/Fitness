@@ -1,12 +1,12 @@
 <?php
 //On lance la session
 session_start();
-//connexion a la base de données
-include('../connexion_bdd/connexionbdd_user.php');
+
 //on teste si le formulaire est bien remplie
 if(isset($_POST)){
+	//connexion a la base de données
+	include('../connexion_bdd/connexionbdd_user.php');
  	if(!empty($_POST['email']) && !empty($_POST['password'])){
-		
 		//on extrait et on sécurise les variable.
 		extract($_POST);
 		$email = htmlspecialchars(addslashes($email));
@@ -20,12 +20,14 @@ if(isset($_POST)){
 		if($req->rowCount() == 1){
 			$userinfo = $req->fetch();
 			$_SESSION['id'] = $userinfo['id'];
-			header("Location: ../utilisateur/accueil.php");
+			$req->closeCursor();
+			header("Location: ../utilisateur/workouts.php");
 			exit();
 		}
 		else
 		{
 			$_SESSION['erreur'] = "Vos identifiants sont incorrects";
+			$req->closeCursor();
 		}
 	}
 	else{
