@@ -39,6 +39,18 @@ include("../connexion_bdd/connexionbdd_user.php");
 			$supprimerexo->execute(array($idprog,$idexo));
 			header('Location: editer_workout.php?idprog='.$idprog);
 		}
+		if(isset($_GET['supr']) && $_GET['supr'] == 1){
+			$supr = htmlspecialchars(addslashes($_GET['supr']));
+			$supr = intval($supr);
+			$supprimerexo = $bdd->prepare("DELETE FROM contient WHERE id_programme=?");
+			$supprimerexo->execute(array($idprog));
+			$supprimerexo->closeCursor();
+			$supprimerprog = $bdd->prepare("DELETE FROM programmes WHERE id=?");
+			$supprimerprog->execute(array($idprog));
+			$supprimerprog->closeCursor();
+			header('Location: workouts.php');
+			exit();
+		}
 	}
 
 ?>
@@ -63,13 +75,14 @@ include("../connexion_bdd/connexionbdd_user.php");
 				if(isset($erreur)){
 					echo "<h3 style='color:red;'>".$erreur."</h3>";
 				}
+				echo '<form method="post" action=""><select name="idexo" id="submit">';
 				while ($rows = $result_programme->fetch()){
-					echo '<form method="post" action="">'.
-					'<p><input type="radio" checked="checked" name="idexo" value="'.$rows["no_exercice"].'">'.$rows["nom_exercice_restant"].' [Difficulté: '.$rows['difficulte'].'] -> nombre de répétitions : '.
+					echo '<p><option value="'.$rows["no_exercice"].'">'.$rows["nom_exercice_restant"].' [Difficulté: '.$rows['difficulte'].']</option>';
+				}
+					echo '</select> -> nombre de répétitions : '.
 					'<input type="number" name="nbr_rep" value="1" min="1" max="10" >'.
 					'<input type="submit" name="submit" value="Ajouter" ></p>'.
 					'</form>';
-				}
 				?>
 				<div class="conteneur_programme">
 				<table>
@@ -84,15 +97,24 @@ include("../connexion_bdd/connexionbdd_user.php");
 					<h2>Cliquez sur un exercice pour le suprimer !</h2>
 					<?php 
 					do {
+						if(!empty($rows3["no_exercice"])){
 					?>
+					
 					<tr id="commentaire_programme">
-						<th><?php echo  '<a href="editer_workout.php?idprog='.$idprog.'&idexo='.$rows3["no_exercice"].'">'.'Exo : '.$rows3["nom_exercice"].' -> '.$rows3["nbr_repetition"].' répétitions'; ?></a></th>
+						<?php echo  '<th><a href="editer_workout.php?idprog='.$idprog.'&idexo='.$rows3["no_exercice"].'">'.'Exo : '.$rows3["nom_exercice"].' -> '.$rows3["nbr_repetition"].' répétitions</a></th>'; ?>
 					</tr>
+					
 					<?php
+						}
 					} while($rows3 = $result_final->fetch())
 					?>
 				</table>
-			</div>
+				</div>
+				<div id="boutton_creation" style="margin-top: 40px; margin-bottom: 40px;">	
+				<a href=<?php echo "editer_workout.php?idprog=".$idprog."&supr=1"; ?>>Suprimer le workout</a>
+				</div>
+				<p><a href=<?php echo '"workout_detail.php?idprog='.$idprog.'"';?>
+					style="color: black;">Retourner au détails du workout</a></p>
 			</div>
 
 			

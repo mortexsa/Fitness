@@ -27,8 +27,6 @@
 				echo '<div id="affiche_erreur"><p>'.$_SESSION['erreur'].'</p></div>';
 			}
 			?>
-			
-
 			<div id="formulaire_connexion">
 				<form action="interraction/connexion.php" method="post">
 					<p><input type="email" name="email" placeholder="Adresse e-mail" id="email"></p>

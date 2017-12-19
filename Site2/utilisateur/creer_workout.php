@@ -7,20 +7,20 @@ if(isset($_SESSION['id'])){
 			include("../connexion_bdd/connexionbdd_user.php");
 			extract($_POST);
  			$nom = ucfirst(strtolower(htmlspecialchars(strip_tags($nom_prog))));
- 			if(preg_match("#^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\s]{3,200}$#",$nom)) {
+ 			if(preg_match("#^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\s\.'_-]{3,200}$#",$nom)) {
  				$commentaire = ucfirst(strtolower(htmlspecialchars(strip_tags($commentaire_prog))));
- 				if(preg_match("#^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\s]{3,200}$#", $commentaire)){
+ 				if(preg_match("#^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\s\.'_-]{3,250}$#", $commentaire)){
  					$insertuser = $bdd->prepare("INSERT INTO programmes(nom, commentaire, date_creation, id_utilisateur) VALUES(?,?,?,?)");
 					$insertuser->execute(array($nom, $commentaire, date("Y-m-d H:i:s"), $_SESSION['id']));
 					$insertuser->closeCursor();
 					header('Location: workout_detail.php');
  				}
  				else {
- 					$erreur_inscription = "Le format du commentaire est incorrect";
+ 					$erreur_inscription = "Le format du commentaire est incorrect (entrez 6 à 250 caractères";
  				}
  			}
  			else {
- 				$erreur_inscription = "Le format du nom est incorrect";
+ 				$erreur_inscription = "Le format du nom est incorrect (entrez 6 à 200 caractères)";
  			}
 		}
 		else {

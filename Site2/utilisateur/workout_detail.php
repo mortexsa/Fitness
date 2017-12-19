@@ -43,14 +43,21 @@ include("../connexion_bdd/connexionbdd_user.php");
 					</tr>
 					<?php 
 					do {
+						if(!empty($rows['no_exercice'])) {
 					?>
 					<tr id="commentaire_programme">
 						<th><?php echo  '<a href="exercice_detail.php?idexo='.$rows["no_exercice"].'">'.'Exo : '.$rows["nom_exercice"].' -> '.$rows["nbr_repetition"].' répétitions'; ?></a></th>
 					</tr>
 					<?php
+						}
+						else {
+							header('Location: editer_workout.php?idprog='.$idprog);
+						}
 					} while($rows = $result_programme->fetch())
 					?>
 				</table>
+				<p style="margin-top: 40px;"><a href="workouts.php"
+					style="color: black; font-size: 1.2em;text-decoration: underline;">Retourner à mes workout</a></p>
 			</div>
 		</section>
 	</div>
