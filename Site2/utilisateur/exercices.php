@@ -15,7 +15,8 @@ include("../connexion_bdd/connexionbdd_user.php");
 		$result_programme->execute(array($idcate));
 	}elseif(!isset($_GET["idcate"]) AND isset($_GET["q"]) AND !empty($_GET['q'])) {
 		$q = htmlspecialchars(addslashes($_GET['q']));
-		$result_programme = $bdd->query('SELECT DISTINCT no_exercice,nom_exercice,difficulte FROM exercices_par_categorie WHERE nom_exercice LIKE "%'.$q.'%" ORDER BY nom_exercice');
+		$result_programme = $bdd->query('SELECT DISTINCT no_exercice,nom_exercice,difficulte FROM exercices_par_categorie 
+			WHERE nom_exercice LIKE "%'.$q.'%" ORDER BY nom_exercice');
 	} 
 
 ?>

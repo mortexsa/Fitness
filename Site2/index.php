@@ -36,6 +36,7 @@
 			</div>
 			<div id="pour_inscrire">
 			<p>Vous n'avez pas de compte? <a href="inscription.php">Cliquez içi pour vous inscrire</a></p>
+			<p><a href="administrateur/index.php">Pour les admins c'est par içi</a></p>
 			</div>
 		</header>
 		<section>
@@ -53,7 +54,6 @@
 				Pour cela vous devez biensur vous inscrire !!!
 			</p>
 		</div>
-			
 		</section>
 		<?php include("utilisateur/footer.php"); ?>
 	</div>	

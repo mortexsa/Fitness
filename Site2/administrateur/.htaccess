@@ -1,0 +1,4 @@
+AuthName "Partie Administrateur"
+AuthType Basic
+AuthUserFile "/var/www/html/Fitness/Site2/administrateur/.htpasswd"
+Require valid-user
